@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package usersManager;
+
+option go_package = "chas3air.usersManager.v1;umv1";
+
+service UsersManager {
+    rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+    rpc GetUser (GetUserRequest) returns (GetUserResponse);
+    rpc InsertUser (InsertUserRequest) returns (InsertUserResponse);
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+    rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+message ListUsersRequest {}
+message ListUsersResponse {
+    repeated User users = 1;
+}
+
+message GetUserRequest {
+    int32 id = 1;
+}
+message GetUserResponse {
+    User user = 1;
+}
+
+message User {
+    int32 id = 1;
+    string email = 2;
+    string password =3;
+}
+
+message InsertUserRequest {
+    User user = 1;
+}
+message InsertUserResponse {}
+
+message UpdateUserRequest {
+    int32 id = 1;
+    User user = 2;
+}
+message UpdateUserResponse {}
+
+message DeleteRequest {
+    int32 id = 1;
+}
+message DeleteResponse {
+    User user = 1;
+}
