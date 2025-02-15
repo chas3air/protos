@@ -191,7 +191,7 @@ func (x *GetUserByIdResponse) GetUser() *User {
 
 type GetUserByEmailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Login         string                 `protobuf:"bytes,1,opt,name=login,proto3" json:"login,omitempty"`
+	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -226,9 +226,9 @@ func (*GetUserByEmailRequest) Descriptor() ([]byte, []int) {
 	return file_usersManager_usersManager_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetUserByEmailRequest) GetLogin() string {
+func (x *GetUserByEmailRequest) GetEmail() string {
 	if x != nil {
-		return x.Login
+		return x.Email
 	}
 	return ""
 }
