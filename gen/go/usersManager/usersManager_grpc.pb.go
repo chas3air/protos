@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UsersManager_ListUsers_FullMethodName      = "/usersManager.UsersManager/ListUsers"
-	UsersManager_GetUserById_FullMethodName    = "/usersManager.UsersManager/GetUserById"
-	UsersManager_GetUserByEmail_FullMethodName = "/usersManager.UsersManager/GetUserByEmail"
-	UsersManager_InsertUser_FullMethodName     = "/usersManager.UsersManager/InsertUser"
-	UsersManager_UpdateUser_FullMethodName     = "/usersManager.UsersManager/UpdateUser"
-	UsersManager_Delete_FullMethodName         = "/usersManager.UsersManager/Delete"
+	UsersManager_ListUsers_FullMethodName      = "/github.chas3air.protos.usersManager.UsersManager/ListUsers"
+	UsersManager_GetUserById_FullMethodName    = "/github.chas3air.protos.usersManager.UsersManager/GetUserById"
+	UsersManager_GetUserByEmail_FullMethodName = "/github.chas3air.protos.usersManager.UsersManager/GetUserByEmail"
+	UsersManager_InsertUser_FullMethodName     = "/github.chas3air.protos.usersManager.UsersManager/InsertUser"
+	UsersManager_UpdateUser_FullMethodName     = "/github.chas3air.protos.usersManager.UsersManager/UpdateUser"
+	UsersManager_Delete_FullMethodName         = "/github.chas3air.protos.usersManager.UsersManager/Delete"
 )
 
 // UsersManagerClient is the client API for UsersManager service.
@@ -278,7 +278,7 @@ func _UsersManager_Delete_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UsersManager_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "usersManager.UsersManager",
+	ServiceName: "github.chas3air.protos.usersManager.UsersManager",
 	HandlerType: (*UsersManagerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

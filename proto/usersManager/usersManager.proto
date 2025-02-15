@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package usersManager;
+package github.chas3air.protos.usersManager;
 
 option go_package = "chas3air.usersManager.v1;umv1";
 
@@ -31,7 +31,6 @@ message GetUserByEmailRequest {
 message GetUserByEmailResponse {
     User user = 1;
 }
-
 
 message User {
     string id = 1;
