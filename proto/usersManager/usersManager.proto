@@ -6,7 +6,8 @@ option go_package = "chas3air.usersManager.v1;umv1";
 
 service UsersManager {
     rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
-    rpc GetUser (GetUserRequest) returns (GetUserResponse);
+    rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (GetUserByEmailResponse);
     rpc InsertUser (InsertUserRequest) returns (InsertUserResponse);
     rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
     rpc Delete (DeleteRequest) returns (DeleteResponse);
@@ -17,12 +18,20 @@ message ListUsersResponse {
     repeated User users = 1;
 }
 
-message GetUserRequest {
+message GetUserByIdRequest {
     string id = 1;
 }
-message GetUserResponse {
+message GetUserByIdResponse {
     User user = 1;
 }
+
+message GetUserByEmailRequest {
+    string login = 1;
+}
+message GetUserByEmailResponse {
+    User user = 1;
+}
+
 
 message User {
     string id = 1;
