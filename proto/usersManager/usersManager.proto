@@ -18,16 +18,18 @@ message ListUsersResponse {
 }
 
 message GetUserRequest {
-    int32 id = 1;
+    string id = 1;
 }
 message GetUserResponse {
     User user = 1;
 }
 
 message User {
-    int32 id = 1;
+    string id = 1;
     string email = 2;
     string password =3;
+    string role = 4;
+    string nick = 5;
 }
 
 message InsertUserRequest {
@@ -36,13 +38,13 @@ message InsertUserRequest {
 message InsertUserResponse {}
 
 message UpdateUserRequest {
-    int32 id = 1;
+    string id = 1;
     User user = 2;
 }
 message UpdateUserResponse {}
 
 message DeleteRequest {
-    int32 id = 1;
+    string id = 1;
 }
 message DeleteResponse {
     User user = 1;
