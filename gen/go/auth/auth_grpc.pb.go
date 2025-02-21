@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v5.29.3
-// source: sso/sso.proto
+// source: auth/auth.proto
 
-package ssov1
+package authv1
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Auth_Register_FullMethodName = "/auth.Auth/Register"
-	Auth_Login_FullMethodName    = "/auth.Auth/Login"
-	Auth_IsAdmin_FullMethodName  = "/auth.Auth/IsAdmin"
+	Auth_Register_FullMethodName = "/github.chas3air.protos.auth.Auth/Register"
+	Auth_Login_FullMethodName    = "/github.chas3air.protos.auth.Auth/Login"
+	Auth_IsAdmin_FullMethodName  = "/github.chas3air.protos.auth.Auth/IsAdmin"
 )
 
 // AuthClient is the client API for Auth service.
@@ -176,7 +176,7 @@ func _Auth_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interf
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Auth_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Auth",
+	ServiceName: "github.chas3air.protos.auth.Auth",
 	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -193,5 +193,5 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "sso/sso.proto",
+	Metadata: "auth/auth.proto",
 }
