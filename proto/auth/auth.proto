@@ -1,22 +1,14 @@
 syntax = "proto3";
 
 package github.chas3air.protos.auth;
+import "google/protobuf/timestamp.proto";
 
 option go_package = "chas3air.auth.v1;authv1";
 
 service Auth {
-    rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
+    rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
-}
-
-message RegisterRequest {
-    string email = 1;
-    string password = 2;
-}
-
-message RegisterResponse {
-    string user_id = 1;
 }
 
 message LoginRequest {
@@ -29,10 +21,24 @@ message LoginResponse {
     string token = 1;
 }
 
+message RegisterRequest {
+    User user = 1;
+}
+message RegisterResponse {}
+
 message IsAdminRequest {
     string user_id = 1;
 }
 
 message IsAdminResponse {
     bool is_admin = 1;
+}
+
+message User {
+    string id = 1;
+    string email = 2;
+    string password =3;
+    string role = 4;
+    string nick = 5;
+    google.protobuf.Timestamp birthday = 6;
 }
