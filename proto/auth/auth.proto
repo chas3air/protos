@@ -41,4 +41,5 @@ message User {
     string role = 4;
     string nick = 5;
     google.protobuf.Timestamp birthday = 6;
+    string description = 7;
 }
