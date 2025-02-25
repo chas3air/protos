@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package github.chas3air.protos.articlesManager;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "chas3air.articlesManager.v1;amv1";
+
+service ArticlesManager {
+    rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
+    rpc GetArticleById (GetArticleByIdRequest) returns (GetArticleByIdResponse);
+    rpc GetArticleByOwnerId (GetArticleByOwnerIdRequest) returns (GetArticleByOwnerIdResponse);
+    rpc InsertArticle (InsertArticleRequest) returns (InsertArticleResponse);
+    rpc UpdateArticle (UpdateArticleRequest) returns (UpdateArticleResponse);
+    rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
+}
+
+message Article {
+    string Id = 1;
+    google.protobuf.Timestamp CreatedAt = 2;
+    string Title = 3;
+    string Content = 4;
+    string OwnerId = 5;
+    int32 Votes = 6;
+    repeated string Tags = 7;
+    repeated Comment Comments = 8;
+}
+
+message Comment {
+    string Id = 1;
+    string ArticleId = 2;
+    string OwnerId = 3;
+    string Content = 4;
+    google.protobuf.Timestamp CreatedAt = 5;
+}
+
+message GetArticlesRequest{}
+message GetArticlesResponse {
+    repeated Article Articles = 1;
+}
+
+message GetArticleByIdRequest {
+    string ArticleId = 1;
+}
+message GetArticleByIdResponse {
+    Article Article = 1;
+}
+
+message GetArticleByOwnerIdRequest {
+    string OwnerId = 1;
+}
+message GetArticleByOwnerIdResponse {
+    Article Article = 1;
+}
+
+message InsertArticleRequest {
+    Article Article = 1;
+}
+message InsertArticleResponse {}
+
+message UpdateArticleRequest {
+    string Id = 1;
+    Article Article = 2;
+}
+message UpdateArticleResponse {}
+
+message DeleteArticleRequest {
+    string Id = 1;
+}
+message DeleteArticleResponse {
+    Article Article = 1;
+}
