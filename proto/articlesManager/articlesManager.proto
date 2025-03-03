@@ -8,7 +8,7 @@ option go_package = "chas3air.articlesManager.v1;amv1";
 service ArticlesManager {
     rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
     rpc GetArticleById (GetArticleByIdRequest) returns (GetArticleByIdResponse);
-    rpc GetArticleByOwnerId (GetArticleByOwnerIdRequest) returns (GetArticleByOwnerIdResponse);
+    rpc GetArticlesByOwnerId (GetArticlesByOwnerIdRequest) returns (GetArticlesByOwnerIdResponse);
     rpc InsertArticle (InsertArticleRequest) returns (InsertArticleResponse);
     rpc UpdateArticle (UpdateArticleRequest) returns (UpdateArticleResponse);
     rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
@@ -46,12 +46,12 @@ message GetArticleByIdResponse {
     Article article = 1;
 }
 
-message GetArticleByOwnerIdRequest {
+message GetArticlesByOwnerIdRequest {
     string owner_id = 1;
 }
 
-message GetArticleByOwnerIdResponse {
-    Article article = 1;
+message GetArticlesByOwnerIdResponse {
+    repeated Article articles = 1;
 }
 
 message InsertArticleRequest {

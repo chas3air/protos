@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ArticlesManager_GetArticles_FullMethodName         = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticles"
-	ArticlesManager_GetArticleById_FullMethodName      = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticleById"
-	ArticlesManager_GetArticleByOwnerId_FullMethodName = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticleByOwnerId"
-	ArticlesManager_InsertArticle_FullMethodName       = "/github.chas3air.protos.articlesManager.ArticlesManager/InsertArticle"
-	ArticlesManager_UpdateArticle_FullMethodName       = "/github.chas3air.protos.articlesManager.ArticlesManager/UpdateArticle"
-	ArticlesManager_DeleteArticle_FullMethodName       = "/github.chas3air.protos.articlesManager.ArticlesManager/DeleteArticle"
+	ArticlesManager_GetArticles_FullMethodName          = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticles"
+	ArticlesManager_GetArticleById_FullMethodName       = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticleById"
+	ArticlesManager_GetArticlesByOwnerId_FullMethodName = "/github.chas3air.protos.articlesManager.ArticlesManager/GetArticlesByOwnerId"
+	ArticlesManager_InsertArticle_FullMethodName        = "/github.chas3air.protos.articlesManager.ArticlesManager/InsertArticle"
+	ArticlesManager_UpdateArticle_FullMethodName        = "/github.chas3air.protos.articlesManager.ArticlesManager/UpdateArticle"
+	ArticlesManager_DeleteArticle_FullMethodName        = "/github.chas3air.protos.articlesManager.ArticlesManager/DeleteArticle"
 )
 
 // ArticlesManagerClient is the client API for ArticlesManager service.
@@ -33,7 +33,7 @@ const (
 type ArticlesManagerClient interface {
 	GetArticles(ctx context.Context, in *GetArticlesRequest, opts ...grpc.CallOption) (*GetArticlesResponse, error)
 	GetArticleById(ctx context.Context, in *GetArticleByIdRequest, opts ...grpc.CallOption) (*GetArticleByIdResponse, error)
-	GetArticleByOwnerId(ctx context.Context, in *GetArticleByOwnerIdRequest, opts ...grpc.CallOption) (*GetArticleByOwnerIdResponse, error)
+	GetArticlesByOwnerId(ctx context.Context, in *GetArticlesByOwnerIdRequest, opts ...grpc.CallOption) (*GetArticlesByOwnerIdResponse, error)
 	InsertArticle(ctx context.Context, in *InsertArticleRequest, opts ...grpc.CallOption) (*InsertArticleResponse, error)
 	UpdateArticle(ctx context.Context, in *UpdateArticleRequest, opts ...grpc.CallOption) (*UpdateArticleResponse, error)
 	DeleteArticle(ctx context.Context, in *DeleteArticleRequest, opts ...grpc.CallOption) (*DeleteArticleResponse, error)
@@ -67,10 +67,10 @@ func (c *articlesManagerClient) GetArticleById(ctx context.Context, in *GetArtic
 	return out, nil
 }
 
-func (c *articlesManagerClient) GetArticleByOwnerId(ctx context.Context, in *GetArticleByOwnerIdRequest, opts ...grpc.CallOption) (*GetArticleByOwnerIdResponse, error) {
+func (c *articlesManagerClient) GetArticlesByOwnerId(ctx context.Context, in *GetArticlesByOwnerIdRequest, opts ...grpc.CallOption) (*GetArticlesByOwnerIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetArticleByOwnerIdResponse)
-	err := c.cc.Invoke(ctx, ArticlesManager_GetArticleByOwnerId_FullMethodName, in, out, cOpts...)
+	out := new(GetArticlesByOwnerIdResponse)
+	err := c.cc.Invoke(ctx, ArticlesManager_GetArticlesByOwnerId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (c *articlesManagerClient) DeleteArticle(ctx context.Context, in *DeleteArt
 type ArticlesManagerServer interface {
 	GetArticles(context.Context, *GetArticlesRequest) (*GetArticlesResponse, error)
 	GetArticleById(context.Context, *GetArticleByIdRequest) (*GetArticleByIdResponse, error)
-	GetArticleByOwnerId(context.Context, *GetArticleByOwnerIdRequest) (*GetArticleByOwnerIdResponse, error)
+	GetArticlesByOwnerId(context.Context, *GetArticlesByOwnerIdRequest) (*GetArticlesByOwnerIdResponse, error)
 	InsertArticle(context.Context, *InsertArticleRequest) (*InsertArticleResponse, error)
 	UpdateArticle(context.Context, *UpdateArticleRequest) (*UpdateArticleResponse, error)
 	DeleteArticle(context.Context, *DeleteArticleRequest) (*DeleteArticleResponse, error)
@@ -133,8 +133,8 @@ func (UnimplementedArticlesManagerServer) GetArticles(context.Context, *GetArtic
 func (UnimplementedArticlesManagerServer) GetArticleById(context.Context, *GetArticleByIdRequest) (*GetArticleByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetArticleById not implemented")
 }
-func (UnimplementedArticlesManagerServer) GetArticleByOwnerId(context.Context, *GetArticleByOwnerIdRequest) (*GetArticleByOwnerIdResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetArticleByOwnerId not implemented")
+func (UnimplementedArticlesManagerServer) GetArticlesByOwnerId(context.Context, *GetArticlesByOwnerIdRequest) (*GetArticlesByOwnerIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetArticlesByOwnerId not implemented")
 }
 func (UnimplementedArticlesManagerServer) InsertArticle(context.Context, *InsertArticleRequest) (*InsertArticleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InsertArticle not implemented")
@@ -202,20 +202,20 @@ func _ArticlesManager_GetArticleById_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArticlesManager_GetArticleByOwnerId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetArticleByOwnerIdRequest)
+func _ArticlesManager_GetArticlesByOwnerId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetArticlesByOwnerIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArticlesManagerServer).GetArticleByOwnerId(ctx, in)
+		return srv.(ArticlesManagerServer).GetArticlesByOwnerId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArticlesManager_GetArticleByOwnerId_FullMethodName,
+		FullMethod: ArticlesManager_GetArticlesByOwnerId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArticlesManagerServer).GetArticleByOwnerId(ctx, req.(*GetArticleByOwnerIdRequest))
+		return srv.(ArticlesManagerServer).GetArticlesByOwnerId(ctx, req.(*GetArticlesByOwnerIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -290,8 +290,8 @@ var ArticlesManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArticlesManager_GetArticleById_Handler,
 		},
 		{
-			MethodName: "GetArticleByOwnerId",
-			Handler:    _ArticlesManager_GetArticleByOwnerId_Handler,
+			MethodName: "GetArticlesByOwnerId",
+			Handler:    _ArticlesManager_GetArticlesByOwnerId_Handler,
 		},
 		{
 			MethodName: "InsertArticle",
