@@ -20,8 +20,7 @@ message Article {
     string title = 3;
     string content = 4;
     string owner_id = 5;
-    repeated string tags = 6;
-    repeated Comment comments = 7;
+    repeated Comment comments = 6;
 }
 
 message Comment {
