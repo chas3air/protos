@@ -20,15 +20,6 @@ message Article {
     string title = 3;
     string content = 4;
     string owner_id = 5;
-    repeated Comment comments = 6;
-}
-
-message Comment {
-    string id = 1;
-    string article_id = 2;
-    string owner_id = 3;
-    string content = 4;
-    google.protobuf.Timestamp created_at = 5;
 }
 
 message GetArticlesRequest {}
