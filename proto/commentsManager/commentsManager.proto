@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package github.chas3air.protos.commentsManager;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "chas3air.commentsManager.v1;cmv1";
+
+service CommentsManager {
+    rpc GetCommentById (GetCommentByIdRequest) returns (GetCommentByIdResponse);
+    rpc GetCommentsByArticleId (GetCommentsByArticleIdRequest) returns (GetCommentsByArticleIdResponse);
+    rpc Insert (InsertRequest) returns (InsertResponse);
+    rpc Delete (DeleteRequest) returns (DeleteResponse);   
+}
+
+message Comment {
+    string id = 1;
+    string article_id = 2;
+    string owner_id = 3;
+    google.protobuf.Timestamp created_at = 4;
+    string content = 5;
+}
+
+message GetCommentByIdRequest {
+    string id = 1;
+}
+
+message GetCommentByIdResponse {
+    Comment comment = 1;
+}
+
+message GetCommentsByArticleIdRequest {
+    string article_id = 1;
+}
+
+message GetCommentsByArticleIdResponse {
+    repeated Comment comments = 1;
+}
+
+message InsertRequest {
+    Comment comment = 1;
+}
+
+message InsertResponse {
+    Comment comment = 1;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
+
+message DeleteResponse {
+    Comment comment = 1;
+}
