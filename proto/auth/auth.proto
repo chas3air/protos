@@ -25,7 +25,9 @@ message LoginResponse {
 message RegisterRequest {
     User user = 1;
 }
-message RegisterResponse {}
+message RegisterResponse {
+    User user = 1;
+}
 
 message IsAdminRequest {
     string user_id = 1;
