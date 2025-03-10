@@ -48,14 +48,18 @@ message InsertArticleRequest {
     Article article = 1;
 }
 
-message InsertArticleResponse {}
+message InsertArticleResponse {
+    Article article = 1;
+}
 
 message UpdateArticleRequest {
     string id = 1;
     Article article = 2;
 }
 
-message UpdateArticleResponse {}
+message UpdateArticleResponse {
+    Article article = 1;
+}
 
 message DeleteArticleRequest {
     string id = 1;

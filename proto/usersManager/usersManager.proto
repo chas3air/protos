@@ -46,13 +46,17 @@ message User {
 message InsertRequest {
     User user = 1;
 }
-message InsertResponse {}
+message InsertResponse {
+    User user = 1;
+}
 
 message UpdateRequest {
     string id = 1;
     User user = 2;
 }
-message UpdateResponse {}
+message UpdateResponse {
+    User user = 1;
+}
 
 message DeleteRequest {
     string id = 1;

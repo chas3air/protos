@@ -13,6 +13,5 @@
 Чтобы импортировать протобафы в свой проект, используйте следующую команду:
 
 ```bash
-go get github.com/your_username/your_repo/gen/go
+go get github.com/chas3air/protos
 ```
-Замените github.com/your_username/your_repo на актуальный путь к вашему репозиторию.
