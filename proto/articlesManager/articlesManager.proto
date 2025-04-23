@@ -19,7 +19,8 @@ message Article {
     google.protobuf.Timestamp created_at = 2;
     string title = 3;
     string content = 4;
-    string owner_id = 5;
+    string tag = 5;
+    string owner_id = 6;
 }
 
 message GetArticlesRequest {}
