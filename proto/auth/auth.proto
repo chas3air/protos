@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package github.chas3air.protos.auth;
-import "google/protobuf/timestamp.proto";
 
 option go_package = "chas3air.auth.v1;authv1";
 
@@ -41,7 +40,4 @@ message User {
     string email = 2;
     string password =3;
     string role = 4;
-    string nick = 5;
-    google.protobuf.Timestamp birthday = 6;
-    string description = 7;
 }
