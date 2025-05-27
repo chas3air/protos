@@ -1,14 +1,12 @@
 syntax = "proto3";
 
 package github.chas3air.protos.usersManager;
-import "google/protobuf/timestamp.proto";
 
 option go_package = "chas3air.usersManager.v1;umv1";
 
 service UsersManager {
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
-    rpc GetUserByEmail (GetUserByEmailRequest) returns (GetUserByEmailResponse);
     rpc Insert (InsertRequest) returns (InsertResponse);
     rpc Update (UpdateRequest) returns (UpdateResponse);
     rpc Delete (DeleteRequest) returns (DeleteResponse);
@@ -26,21 +24,11 @@ message GetUserByIdResponse {
     User user = 1;
 }
 
-message GetUserByEmailRequest {
-    string email = 1;
-}
-message GetUserByEmailResponse {
-    User user = 1;
-}
-
 message User {
     string id = 1;
     string email = 2;
     string password =3;
     string role = 4;
-    string nick = 5;
-    google.protobuf.Timestamp birthday = 6;
-    string description = 7;
 }
 
 message InsertRequest {

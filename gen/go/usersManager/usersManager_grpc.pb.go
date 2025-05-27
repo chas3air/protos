@@ -19,12 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UsersManager_GetUsers_FullMethodName       = "/github.chas3air.protos.usersManager.UsersManager/GetUsers"
-	UsersManager_GetUserById_FullMethodName    = "/github.chas3air.protos.usersManager.UsersManager/GetUserById"
-	UsersManager_GetUserByEmail_FullMethodName = "/github.chas3air.protos.usersManager.UsersManager/GetUserByEmail"
-	UsersManager_Insert_FullMethodName         = "/github.chas3air.protos.usersManager.UsersManager/Insert"
-	UsersManager_Update_FullMethodName         = "/github.chas3air.protos.usersManager.UsersManager/Update"
-	UsersManager_Delete_FullMethodName         = "/github.chas3air.protos.usersManager.UsersManager/Delete"
+	UsersManager_GetUsers_FullMethodName    = "/github.chas3air.protos.usersManager.UsersManager/GetUsers"
+	UsersManager_GetUserById_FullMethodName = "/github.chas3air.protos.usersManager.UsersManager/GetUserById"
+	UsersManager_Insert_FullMethodName      = "/github.chas3air.protos.usersManager.UsersManager/Insert"
+	UsersManager_Update_FullMethodName      = "/github.chas3air.protos.usersManager.UsersManager/Update"
+	UsersManager_Delete_FullMethodName      = "/github.chas3air.protos.usersManager.UsersManager/Delete"
 )
 
 // UsersManagerClient is the client API for UsersManager service.
@@ -33,7 +32,6 @@ const (
 type UsersManagerClient interface {
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
-	GetUserByEmail(ctx context.Context, in *GetUserByEmailRequest, opts ...grpc.CallOption) (*GetUserByEmailResponse, error)
 	Insert(ctx context.Context, in *InsertRequest, opts ...grpc.CallOption) (*InsertResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
@@ -61,16 +59,6 @@ func (c *usersManagerClient) GetUserById(ctx context.Context, in *GetUserByIdReq
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserByIdResponse)
 	err := c.cc.Invoke(ctx, UsersManager_GetUserById_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *usersManagerClient) GetUserByEmail(ctx context.Context, in *GetUserByEmailRequest, opts ...grpc.CallOption) (*GetUserByEmailResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserByEmailResponse)
-	err := c.cc.Invoke(ctx, UsersManager_GetUserByEmail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +101,6 @@ func (c *usersManagerClient) Delete(ctx context.Context, in *DeleteRequest, opts
 type UsersManagerServer interface {
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
-	GetUserByEmail(context.Context, *GetUserByEmailRequest) (*GetUserByEmailResponse, error)
 	Insert(context.Context, *InsertRequest) (*InsertResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
@@ -132,9 +119,6 @@ func (UnimplementedUsersManagerServer) GetUsers(context.Context, *GetUsersReques
 }
 func (UnimplementedUsersManagerServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserById not implemented")
-}
-func (UnimplementedUsersManagerServer) GetUserByEmail(context.Context, *GetUserByEmailRequest) (*GetUserByEmailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserByEmail not implemented")
 }
 func (UnimplementedUsersManagerServer) Insert(context.Context, *InsertRequest) (*InsertResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Insert not implemented")
@@ -198,24 +182,6 @@ func _UsersManager_GetUserById_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UsersManagerServer).GetUserById(ctx, req.(*GetUserByIdRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UsersManager_GetUserByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByEmailRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UsersManagerServer).GetUserByEmail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UsersManager_GetUserByEmail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).GetUserByEmail(ctx, req.(*GetUserByEmailRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -288,10 +254,6 @@ var UsersManager_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserById",
 			Handler:    _UsersManager_GetUserById_Handler,
-		},
-		{
-			MethodName: "GetUserByEmail",
-			Handler:    _UsersManager_GetUserByEmail_Handler,
 		},
 		{
 			MethodName: "Insert",
