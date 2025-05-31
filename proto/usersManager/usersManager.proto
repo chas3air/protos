@@ -26,8 +26,8 @@ message GetUserByIdResponse {
 
 message User {
     string id = 1;
-    string email = 2;
-    string password =3;
+    string login = 2;
+    bytes password =3;
     string role = 4;
 }
 
