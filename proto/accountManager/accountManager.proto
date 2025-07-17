@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package github.chas3air.protos.accountManager;
+import "google/protobuf/timestamp.proto";
+
+option go_package = "chas3air.accountManager.v1;amv1";
+
+service AccountManager{
+    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse);
+    rpc GetPurchaseById(GetPurchaseByIdRequest) returns (GetPurchaseByIdResponse);
+    rpc GetPurchasesByAccountId(GetPurchasesByAccountIdRequest) returns (GetPurchasesByAccountIdResponse);
+}
+
+message Account {
+    string id = 1;
+    string user_id = 2;
+}
+
+message Purchase {
+    string id = 1;
+    string account_id = 2;
+    double price = 3;
+    google.protobuf.Timestamp time = 4;
+    string category = 5;
+    string description = 6;
+}
+
+message CreateAccountRequest {
+    string user_id = 1;
+}
+
+message CreateAccountResponse {
+    string account_id = 1;
+}
+
+message GetPurchaseByIdRequest {
+    string purchase_id = 1;
+}
+
+message GetPurchaseByIdResponse {
+    Purchase purchase = 1;
+}
+
+message GetPurchasesByAccountIdRequest {
+    string account_id = 1;
+}
+
+message GetPurchasesByAccountIdResponse {
+    repeated Purchase purchases = 1;
+}
