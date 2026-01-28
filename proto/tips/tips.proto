@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package github.chas3air.protos.tips;
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
+option go_package = "chas3air.tips.v1;tipsv1";
+
+
+// Tips service provides operations for managing tips.
+service Tips {
+    // GetTips retrieves all tips with pagination.
+    rpc GetTips (GetTipsRequest) returns (GetTipsResponse);
+    // GetTipsByUser retrieves all tips for a specific user.
+    rpc GetTipsByUser (GetTipsByUserRequest) returns (GetTipsByUserResponse);
+    // GetTipsById retrieves a tip by its ID.
+    rpc GetTipsById (GetTipsByIdRequest) returns (GetTipsByIdResponse);
+    // Insert creates a new tip.
+    rpc Insert (InsertRequest) returns (google.protobuf.Empty);
+    // Update modifies an existing tip.
+    rpc Update (UpdateRequest) returns (google.protobuf.Empty);
+    // Delete removes a tip by its ID.
+    rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
+}
+
+message Tip {
+    string id = 1;
+    string user_id = 2;
+    string title = 3;
+    string content = 4;
+    google.protobuf.Timestamp created_at = 5;
+    bool is_private = 6;
+}
+
+message GetTipsRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+message GetTipsResponse {
+    repeated Tip tips = 1;
+}
+
+message GetTipsByUserRequest {
+    string user_id = 1;
+}
+message GetTipsByUserResponse {
+    repeated Tip tips = 1;
+}
+
+message GetTipsByIdRequest {
+    string id = 1;
+}
+message GetTipsByIdResponse {
+    Tip tip = 1;
+}
+
+message InsertRequest {
+    Tip tip = 1;
+}
+
+message UpdateRequest {
+    string id = 1;
+    Tip tip = 2;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
