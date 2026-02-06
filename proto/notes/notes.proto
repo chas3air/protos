@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package github.chas3air.protos.notes;
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+
+option go_package = "chas3air.notes.v1;notesv1";
+
+
+// Notes service provides operations for managing notes.
+service Notes {
+    // GetNotes retrieves all notes with pagination.
+    rpc GetNotes (GetNotesRequest) returns (GetNotesResponse);
+    // GetNotesByUser retrieves all notes for a specific user.
+    rpc GetNotesByUser (GetNotesByUserRequest) returns (GetNotesByUserResponse);
+    // GetNotesById retrieves a note by its ID.
+    rpc GetNotesById (GetNotesByIdRequest) returns (GetNotesByIdResponse);
+    // Insert creates a new note.
+    rpc Insert (InsertRequest) returns (google.protobuf.Empty);
+    // Update modifies an existing note.
+    rpc Update (UpdateRequest) returns (google.protobuf.Empty);
+    // Delete removes a note by its ID.
+    rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
+}
+
+message Note {
+    string id = 1;
+    string user_id = 2;
+    string title = 3;
+    string content = 4;
+    google.protobuf.Timestamp created_at = 5;
+    bool is_private = 6;
+}
+
+message GetNotesRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+message GetNotesResponse {
+    repeated Note notes = 1;
+}
+
+message GetNotesByUserRequest {
+    string user_id = 1;
+}
+message GetNotesByUserResponse {
+    repeated Note notes = 1;
+}
+
+message GetNotesByIdRequest {
+    string id = 1;
+}
+message GetNotesByIdResponse {
+    Note note = 1;
+}
+
+message InsertRequest {
+    Note note = 1;
+}
+
+message UpdateRequest {
+    string id = 1;
+    Note note = 2;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
