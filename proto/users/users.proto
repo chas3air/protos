@@ -9,7 +9,7 @@ import "google/protobuf/empty.proto";
 // Users service provides operations for managing users.
 service Users {
     // GetUsers retrieves all users from the system.
-    rpc GetUsers (GetNotesRequest) returns (GetUsersResponse);
+    rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
     // GetUserById retrieves a specific user by their ID.
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
     // Insert creates a new user in the system.
@@ -28,7 +28,7 @@ message User {
     string password = 5;
 }
 
-message GetNotesRequest {
+message GetUsersRequest {
     int32 offset = 1;
     int32 limit = 2;
 }
