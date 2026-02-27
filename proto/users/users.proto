@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package github.chas3air.protos.users;
 
-option go_package = "chas3air.users.v1;umv1";
+option go_package = "chas3air.users.v1;usersv1";
 
 import "google/protobuf/empty.proto";
 
