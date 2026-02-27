@@ -6,11 +6,17 @@ option go_package = "chas3air.users.v1;usersv1";
 
 import "google/protobuf/empty.proto";
 
+// Users service provides operations for managing user data.
 service Users {
+    // GetUsers retrieves a paginated list of all users.
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+    // GetUserById retrieves a specific user by their ID.
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+    // Insert creates a new user record.
     rpc Insert (InsertRequest) returns (google.protobuf.Empty);
+    // Update modifies an existing user record.
     rpc Update (UpdateRequest) returns (google.protobuf.Empty);
+    // Delete removes a user record by ID.
     rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
 }
 

@@ -8,7 +8,6 @@ package usersv1
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,11 +30,18 @@ const (
 // UsersClient is the client API for Users service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Users service provides operations for managing user data.
 type UsersClient interface {
+	// GetUsers retrieves a paginated list of all users.
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
+	// GetUserById retrieves a specific user by their ID.
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
+	// Insert creates a new user record.
 	Insert(ctx context.Context, in *InsertRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Update modifies an existing user record.
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Delete removes a user record by ID.
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -100,11 +106,18 @@ func (c *usersClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grp
 // UsersServer is the server API for Users service.
 // All implementations must embed UnimplementedUsersServer
 // for forward compatibility.
+//
+// Users service provides operations for managing user data.
 type UsersServer interface {
+	// GetUsers retrieves a paginated list of all users.
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
+	// GetUserById retrieves a specific user by their ID.
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
+	// Insert creates a new user record.
 	Insert(context.Context, *InsertRequest) (*emptypb.Empty, error)
+	// Update modifies an existing user record.
 	Update(context.Context, *UpdateRequest) (*emptypb.Empty, error)
+	// Delete removes a user record by ID.
 	Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUsersServer()
 }
