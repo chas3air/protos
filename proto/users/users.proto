@@ -6,8 +6,8 @@ option go_package = "chas3air.users.v1;umv1";
 
 import "google/protobuf/empty.proto";
 
-// UsersManager service provides operations for managing users.
-service UsersManager {
+// Users service provides operations for managing users.
+service Users {
     // GetUsers retrieves all users from the system.
     rpc GetUsers (google.protobuf.Empty) returns (GetUsersResponse);
     // GetUserById retrieves a specific user by their ID.

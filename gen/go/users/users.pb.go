@@ -393,8 +393,8 @@ const file_users_users_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x126\n" +
 	"\x04user\x18\x02 \x01(\v2\".github.chas3air.protos.users.UserR\x04user\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xc3\x03\n" +
-	"\fUsersManager\x12R\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xbc\x03\n" +
+	"\x05Users\x12R\n" +
 	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a..github.chas3air.protos.users.GetUsersResponse\x12r\n" +
 	"\vGetUserById\x120.github.chas3air.protos.users.GetUserByIdRequest\x1a1.github.chas3air.protos.users.GetUserByIdResponse\x12M\n" +
 	"\x06Insert\x12+.github.chas3air.protos.users.InsertRequest\x1a\x16.google.protobuf.Empty\x12M\n" +
@@ -429,16 +429,16 @@ var file_users_users_proto_depIdxs = []int32{
 	3, // 1: github.chas3air.protos.users.GetUserByIdResponse.user:type_name -> github.chas3air.protos.users.User
 	3, // 2: github.chas3air.protos.users.InsertRequest.user:type_name -> github.chas3air.protos.users.User
 	3, // 3: github.chas3air.protos.users.UpdateRequest.user:type_name -> github.chas3air.protos.users.User
-	7, // 4: github.chas3air.protos.users.UsersManager.GetUsers:input_type -> google.protobuf.Empty
-	1, // 5: github.chas3air.protos.users.UsersManager.GetUserById:input_type -> github.chas3air.protos.users.GetUserByIdRequest
-	4, // 6: github.chas3air.protos.users.UsersManager.Insert:input_type -> github.chas3air.protos.users.InsertRequest
-	5, // 7: github.chas3air.protos.users.UsersManager.Update:input_type -> github.chas3air.protos.users.UpdateRequest
-	6, // 8: github.chas3air.protos.users.UsersManager.Delete:input_type -> github.chas3air.protos.users.DeleteRequest
-	0, // 9: github.chas3air.protos.users.UsersManager.GetUsers:output_type -> github.chas3air.protos.users.GetUsersResponse
-	2, // 10: github.chas3air.protos.users.UsersManager.GetUserById:output_type -> github.chas3air.protos.users.GetUserByIdResponse
-	7, // 11: github.chas3air.protos.users.UsersManager.Insert:output_type -> google.protobuf.Empty
-	7, // 12: github.chas3air.protos.users.UsersManager.Update:output_type -> google.protobuf.Empty
-	7, // 13: github.chas3air.protos.users.UsersManager.Delete:output_type -> google.protobuf.Empty
+	7, // 4: github.chas3air.protos.users.Users.GetUsers:input_type -> google.protobuf.Empty
+	1, // 5: github.chas3air.protos.users.Users.GetUserById:input_type -> github.chas3air.protos.users.GetUserByIdRequest
+	4, // 6: github.chas3air.protos.users.Users.Insert:input_type -> github.chas3air.protos.users.InsertRequest
+	5, // 7: github.chas3air.protos.users.Users.Update:input_type -> github.chas3air.protos.users.UpdateRequest
+	6, // 8: github.chas3air.protos.users.Users.Delete:input_type -> github.chas3air.protos.users.DeleteRequest
+	0, // 9: github.chas3air.protos.users.Users.GetUsers:output_type -> github.chas3air.protos.users.GetUsersResponse
+	2, // 10: github.chas3air.protos.users.Users.GetUserById:output_type -> github.chas3air.protos.users.GetUserByIdResponse
+	7, // 11: github.chas3air.protos.users.Users.Insert:output_type -> google.protobuf.Empty
+	7, // 12: github.chas3air.protos.users.Users.Update:output_type -> google.protobuf.Empty
+	7, // 13: github.chas3air.protos.users.Users.Delete:output_type -> google.protobuf.Empty
 	9, // [9:14] is the sub-list for method output_type
 	4, // [4:9] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

@@ -20,19 +20,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UsersManager_GetUsers_FullMethodName    = "/github.chas3air.protos.users.UsersManager/GetUsers"
-	UsersManager_GetUserById_FullMethodName = "/github.chas3air.protos.users.UsersManager/GetUserById"
-	UsersManager_Insert_FullMethodName      = "/github.chas3air.protos.users.UsersManager/Insert"
-	UsersManager_Update_FullMethodName      = "/github.chas3air.protos.users.UsersManager/Update"
-	UsersManager_Delete_FullMethodName      = "/github.chas3air.protos.users.UsersManager/Delete"
+	Users_GetUsers_FullMethodName    = "/github.chas3air.protos.users.Users/GetUsers"
+	Users_GetUserById_FullMethodName = "/github.chas3air.protos.users.Users/GetUserById"
+	Users_Insert_FullMethodName      = "/github.chas3air.protos.users.Users/Insert"
+	Users_Update_FullMethodName      = "/github.chas3air.protos.users.Users/Update"
+	Users_Delete_FullMethodName      = "/github.chas3air.protos.users.Users/Delete"
 )
 
-// UsersManagerClient is the client API for UsersManager service.
+// UsersClient is the client API for Users service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// UsersManager service provides operations for managing users.
-type UsersManagerClient interface {
+// Users service provides operations for managing users.
+type UsersClient interface {
 	// GetUsers retrieves all users from the system.
 	GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUsersResponse, error)
 	// GetUserById retrieves a specific user by their ID.
@@ -45,70 +45,70 @@ type UsersManagerClient interface {
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type usersManagerClient struct {
+type usersClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewUsersManagerClient(cc grpc.ClientConnInterface) UsersManagerClient {
-	return &usersManagerClient{cc}
+func NewUsersClient(cc grpc.ClientConnInterface) UsersClient {
+	return &usersClient{cc}
 }
 
-func (c *usersManagerClient) GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUsersResponse, error) {
+func (c *usersClient) GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUsersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUsersResponse)
-	err := c.cc.Invoke(ctx, UsersManager_GetUsers_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Users_GetUsers_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersManagerClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
+func (c *usersClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserByIdResponse)
-	err := c.cc.Invoke(ctx, UsersManager_GetUserById_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Users_GetUserById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersManagerClient) Insert(ctx context.Context, in *InsertRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) Insert(ctx context.Context, in *InsertRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UsersManager_Insert_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Users_Insert_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersManagerClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UsersManager_Update_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Users_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *usersManagerClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UsersManager_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Users_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// UsersManagerServer is the server API for UsersManager service.
-// All implementations must embed UnimplementedUsersManagerServer
+// UsersServer is the server API for Users service.
+// All implementations must embed UnimplementedUsersServer
 // for forward compatibility.
 //
-// UsersManager service provides operations for managing users.
-type UsersManagerServer interface {
+// Users service provides operations for managing users.
+type UsersServer interface {
 	// GetUsers retrieves all users from the system.
 	GetUsers(context.Context, *emptypb.Empty) (*GetUsersResponse, error)
 	// GetUserById retrieves a specific user by their ID.
@@ -119,168 +119,168 @@ type UsersManagerServer interface {
 	Update(context.Context, *UpdateRequest) (*emptypb.Empty, error)
 	// Delete removes a user from the system.
 	Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedUsersManagerServer()
+	mustEmbedUnimplementedUsersServer()
 }
 
-// UnimplementedUsersManagerServer must be embedded to have
+// UnimplementedUsersServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedUsersManagerServer struct{}
+type UnimplementedUsersServer struct{}
 
-func (UnimplementedUsersManagerServer) GetUsers(context.Context, *emptypb.Empty) (*GetUsersResponse, error) {
+func (UnimplementedUsersServer) GetUsers(context.Context, *emptypb.Empty) (*GetUsersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUsers not implemented")
 }
-func (UnimplementedUsersManagerServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
+func (UnimplementedUsersServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserById not implemented")
 }
-func (UnimplementedUsersManagerServer) Insert(context.Context, *InsertRequest) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) Insert(context.Context, *InsertRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Insert not implemented")
 }
-func (UnimplementedUsersManagerServer) Update(context.Context, *UpdateRequest) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) Update(context.Context, *UpdateRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedUsersManagerServer) Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) Delete(context.Context, *DeleteRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedUsersManagerServer) mustEmbedUnimplementedUsersManagerServer() {}
-func (UnimplementedUsersManagerServer) testEmbeddedByValue()                      {}
+func (UnimplementedUsersServer) mustEmbedUnimplementedUsersServer() {}
+func (UnimplementedUsersServer) testEmbeddedByValue()               {}
 
-// UnsafeUsersManagerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to UsersManagerServer will
+// UnsafeUsersServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to UsersServer will
 // result in compilation errors.
-type UnsafeUsersManagerServer interface {
-	mustEmbedUnimplementedUsersManagerServer()
+type UnsafeUsersServer interface {
+	mustEmbedUnimplementedUsersServer()
 }
 
-func RegisterUsersManagerServer(s grpc.ServiceRegistrar, srv UsersManagerServer) {
-	// If the following call panics, it indicates UnimplementedUsersManagerServer was
+func RegisterUsersServer(s grpc.ServiceRegistrar, srv UsersServer) {
+	// If the following call panics, it indicates UnimplementedUsersServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&UsersManager_ServiceDesc, srv)
+	s.RegisterService(&Users_ServiceDesc, srv)
 }
 
-func _UsersManager_GetUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Users_GetUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersManagerServer).GetUsers(ctx, in)
+		return srv.(UsersServer).GetUsers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersManager_GetUsers_FullMethodName,
+		FullMethod: Users_GetUsers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).GetUsers(ctx, req.(*emptypb.Empty))
+		return srv.(UsersServer).GetUsers(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersManager_GetUserById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Users_GetUserById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersManagerServer).GetUserById(ctx, in)
+		return srv.(UsersServer).GetUserById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersManager_GetUserById_FullMethodName,
+		FullMethod: Users_GetUserById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).GetUserById(ctx, req.(*GetUserByIdRequest))
+		return srv.(UsersServer).GetUserById(ctx, req.(*GetUserByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersManager_Insert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Users_Insert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InsertRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersManagerServer).Insert(ctx, in)
+		return srv.(UsersServer).Insert(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersManager_Insert_FullMethodName,
+		FullMethod: Users_Insert_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).Insert(ctx, req.(*InsertRequest))
+		return srv.(UsersServer).Insert(ctx, req.(*InsertRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersManager_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Users_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersManagerServer).Update(ctx, in)
+		return srv.(UsersServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersManager_Update_FullMethodName,
+		FullMethod: Users_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).Update(ctx, req.(*UpdateRequest))
+		return srv.(UsersServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UsersManager_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Users_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersManagerServer).Delete(ctx, in)
+		return srv.(UsersServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UsersManager_Delete_FullMethodName,
+		FullMethod: Users_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersManagerServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(UsersServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// UsersManager_ServiceDesc is the grpc.ServiceDesc for UsersManager service.
+// Users_ServiceDesc is the grpc.ServiceDesc for Users service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var UsersManager_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "github.chas3air.protos.users.UsersManager",
-	HandlerType: (*UsersManagerServer)(nil),
+var Users_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "github.chas3air.protos.users.Users",
+	HandlerType: (*UsersServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetUsers",
-			Handler:    _UsersManager_GetUsers_Handler,
+			Handler:    _Users_GetUsers_Handler,
 		},
 		{
 			MethodName: "GetUserById",
-			Handler:    _UsersManager_GetUserById_Handler,
+			Handler:    _Users_GetUserById_Handler,
 		},
 		{
 			MethodName: "Insert",
-			Handler:    _UsersManager_Insert_Handler,
+			Handler:    _Users_Insert_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _UsersManager_Update_Handler,
+			Handler:    _Users_Update_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _UsersManager_Delete_Handler,
+			Handler:    _Users_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
