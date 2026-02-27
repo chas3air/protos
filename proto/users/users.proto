@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package github.chas3air.protos.users;
+
+option go_package = "chas3air.users.v1;usersv1";
+
+import "google/protobuf/empty.proto";
+
+// Users service provides operations for managing users.
+service Users {
+    // GetUsers retrieves all users from the system.
+    rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+    // GetUserById retrieves a specific user by their ID.
+    rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+    // Insert creates a new user in the system.
+    rpc Insert (InsertRequest) returns (google.protobuf.Empty);
+    // Update modifies an existing user's information.
+    rpc Update (UpdateRequest) returns (google.protobuf.Empty);
+    // Delete removes a user from the system.
+    rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string phone = 4;
+    string password = 5;
+}
+
+message GetUsersRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
+
+message GetUsersResponse {
+    repeated User users = 1;
+}
+
+message GetUserByIdRequest {
+    string id = 1;
+}
+message GetUserByIdResponse {
+    User user = 1;
+}
+
+message InsertRequest {
+    User user = 1;
+}
+
+message UpdateRequest {
+    string id = 1;
+    User user = 2;
+}
+
+message DeleteRequest {
+    string id = 1;
+}

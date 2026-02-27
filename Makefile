@@ -8,6 +8,6 @@ PROTOC_GEN_GRPC = --go-grpc_out=$(OUTPUT_DIR) --go-grpc_opt=paths=source_relativ
 all: generate
 
 generate:
-	$(PROTOC) -I $(PROTO_DIR) $(PROTO_DIR)/sso/*.proto $(PROTOC_GEN_GO) $(PROTOC_GEN_GRPC)
+	$(PROTOC) -I $(PROTO_DIR) $(PROTO_DIR)/notes/*.proto $(PROTOC_GEN_GO) $(PROTOC_GEN_GRPC)
 
 gen: generate
