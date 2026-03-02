@@ -1,17 +1,19 @@
 # Protos
 
-Данный репозиторий представляет собой папку для хранения протобафов, которые можно использовать в разных проектах. Вам нужно всего лишь импортировать их в свой проект.
+This repository is a folder for storing protobufs that can be used in different projects. All you need to do is import them into your project.
 
-## Структура репозитория
+## Repository structure
 
-- **Папка `proto`**: содержит исходные `.proto` файлы.
-- **Папка `gen`**: содержит уже сгенерированный код protobuf. 
-  - **Папка `go`**: хранит код, сгенерированный для Go.
+- **`proto` folder**: contains the source `.proto` files.
+- **`gen` folder**: contains the already generated protobuf code. 
+  - **`go` folder**: stores the code generated for Go.
 
-## Импорт в проект
+## Importing into a project
 
-Чтобы импортировать протобафы в свой проект, используйте следующую команду:
+To import protobufs into your project, use the following command:
 
 ```bash
 go get github.com/chas3air/protos
 ```
+
+Translated with DeepL.com (free version)
