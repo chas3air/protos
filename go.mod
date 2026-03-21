@@ -3,6 +3,7 @@ module github.com/chas3air/protos
 go 1.23
 
 require (
+	google.golang.org/genproto/googleapis/api v0.0.0-20240318140521-94a12d6c2237
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.36.11
 )

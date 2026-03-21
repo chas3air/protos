@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package github.chas3air.protos.greeting;
+
+option go_package = "chas3air.greet.v1;greetv1";
+
+import "google/api/annotations.proto";
+
+//
+service GreetingService {
+//
+  rpc Hello(HelloRequest) returns (HelloResponse) {
+    option (google.api.http) = {
+        get: "/v1/hello/{name}"
+    };
+  }
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string greeting = 1;
+}
