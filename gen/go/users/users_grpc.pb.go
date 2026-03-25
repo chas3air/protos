@@ -20,12 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Users_GetUsers_FullMethodName       = "/github.chas3air.protos.users.Users/GetUsers"
-	Users_GetUserById_FullMethodName    = "/github.chas3air.protos.users.Users/GetUserById"
-	Users_GetUserByLogin_FullMethodName = "/github.chas3air.protos.users.Users/GetUserByLogin"
-	Users_Insert_FullMethodName         = "/github.chas3air.protos.users.Users/Insert"
-	Users_Update_FullMethodName         = "/github.chas3air.protos.users.Users/Update"
-	Users_Delete_FullMethodName         = "/github.chas3air.protos.users.Users/Delete"
+	Users_GetUsers_FullMethodName         = "/github.chas3air.protos.users.Users/GetUsers"
+	Users_GetUserById_FullMethodName      = "/github.chas3air.protos.users.Users/GetUserById"
+	Users_GetUserByEmail_FullMethodName   = "/github.chas3air.protos.users.Users/GetUserByEmail"
+	Users_CheckCredentials_FullMethodName = "/github.chas3air.protos.users.Users/CheckCredentials"
+	Users_Insert_FullMethodName           = "/github.chas3air.protos.users.Users/Insert"
+	Users_Update_FullMethodName           = "/github.chas3air.protos.users.Users/Update"
+	Users_Delete_FullMethodName           = "/github.chas3air.protos.users.Users/Delete"
 )
 
 // UsersClient is the client API for Users service.
@@ -38,8 +39,10 @@ type UsersClient interface {
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
 	// GetUserById retrieves a specific user by their ID.
 	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
-	// GetUserByLogin retrieves a specific user by their login.
-	GetUserByLogin(ctx context.Context, in *GetUserByLoginRequest, opts ...grpc.CallOption) (*GetUserByLoginResponse, error)
+	// GetUserByEmail retrieves a specific user by their email.
+	GetUserByEmail(ctx context.Context, in *GetUserByEmailRequest, opts ...grpc.CallOption) (*GetUserByEmailResponse, error)
+	// CheckCredentials verifies if the provided email and password are valid.
+	CheckCredentials(ctx context.Context, in *CheckCredentialsRequest, opts ...grpc.CallOption) (*CheckCredentialsResponse, error)
 	// Insert creates a new user record.
 	Insert(ctx context.Context, in *InsertRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Update modifies an existing user record.
@@ -76,10 +79,20 @@ func (c *usersClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, o
 	return out, nil
 }
 
-func (c *usersClient) GetUserByLogin(ctx context.Context, in *GetUserByLoginRequest, opts ...grpc.CallOption) (*GetUserByLoginResponse, error) {
+func (c *usersClient) GetUserByEmail(ctx context.Context, in *GetUserByEmailRequest, opts ...grpc.CallOption) (*GetUserByEmailResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserByLoginResponse)
-	err := c.cc.Invoke(ctx, Users_GetUserByLogin_FullMethodName, in, out, cOpts...)
+	out := new(GetUserByEmailResponse)
+	err := c.cc.Invoke(ctx, Users_GetUserByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *usersClient) CheckCredentials(ctx context.Context, in *CheckCredentialsRequest, opts ...grpc.CallOption) (*CheckCredentialsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CheckCredentialsResponse)
+	err := c.cc.Invoke(ctx, Users_CheckCredentials_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -126,8 +139,10 @@ type UsersServer interface {
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
 	// GetUserById retrieves a specific user by their ID.
 	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
-	// GetUserByLogin retrieves a specific user by their login.
-	GetUserByLogin(context.Context, *GetUserByLoginRequest) (*GetUserByLoginResponse, error)
+	// GetUserByEmail retrieves a specific user by their email.
+	GetUserByEmail(context.Context, *GetUserByEmailRequest) (*GetUserByEmailResponse, error)
+	// CheckCredentials verifies if the provided email and password are valid.
+	CheckCredentials(context.Context, *CheckCredentialsRequest) (*CheckCredentialsResponse, error)
 	// Insert creates a new user record.
 	Insert(context.Context, *InsertRequest) (*emptypb.Empty, error)
 	// Update modifies an existing user record.
@@ -150,8 +165,11 @@ func (UnimplementedUsersServer) GetUsers(context.Context, *GetUsersRequest) (*Ge
 func (UnimplementedUsersServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserById not implemented")
 }
-func (UnimplementedUsersServer) GetUserByLogin(context.Context, *GetUserByLoginRequest) (*GetUserByLoginResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetUserByLogin not implemented")
+func (UnimplementedUsersServer) GetUserByEmail(context.Context, *GetUserByEmailRequest) (*GetUserByEmailResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetUserByEmail not implemented")
+}
+func (UnimplementedUsersServer) CheckCredentials(context.Context, *CheckCredentialsRequest) (*CheckCredentialsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method CheckCredentials not implemented")
 }
 func (UnimplementedUsersServer) Insert(context.Context, *InsertRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method Insert not implemented")
@@ -219,20 +237,38 @@ func _Users_GetUserById_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Users_GetUserByLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByLoginRequest)
+func _Users_GetUserByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserByEmailRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UsersServer).GetUserByLogin(ctx, in)
+		return srv.(UsersServer).GetUserByEmail(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Users_GetUserByLogin_FullMethodName,
+		FullMethod: Users_GetUserByEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).GetUserByLogin(ctx, req.(*GetUserByLoginRequest))
+		return srv.(UsersServer).GetUserByEmail(ctx, req.(*GetUserByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Users_CheckCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckCredentialsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UsersServer).CheckCredentials(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Users_CheckCredentials_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UsersServer).CheckCredentials(ctx, req.(*CheckCredentialsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -307,8 +343,12 @@ var Users_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Users_GetUserById_Handler,
 		},
 		{
-			MethodName: "GetUserByLogin",
-			Handler:    _Users_GetUserByLogin_Handler,
+			MethodName: "GetUserByEmail",
+			Handler:    _Users_GetUserByEmail_Handler,
+		},
+		{
+			MethodName: "CheckCredentials",
+			Handler:    _Users_CheckCredentials_Handler,
 		},
 		{
 			MethodName: "Insert",

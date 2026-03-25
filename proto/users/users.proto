@@ -10,14 +10,22 @@ import "google/protobuf/empty.proto";
 service Users {
     // GetUsers retrieves a paginated list of all users.
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+
     // GetUserById retrieves a specific user by their ID.
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
-    // GetUserByLogin retrieves a specific user by their login.
-    rpc GetUserByLogin (GetUserByLoginRequest) returns (GetUserByLoginResponse);
+    
+    // GetUserByEmail retrieves a specific user by their email.
+    rpc GetUserByEmail (GetUserByEmailRequest) returns (GetUserByEmailResponse);
+    
+    // CheckCredentials verifies if the provided email and password are valid.
+    rpc CheckCredentials (CheckCredentialsRequest) returns (CheckCredentialsResponse);
+    
     // Insert creates a new user record.
     rpc Insert (InsertRequest) returns (google.protobuf.Empty);
+    
     // Update modifies an existing user record.
     rpc Update (UpdateRequest) returns (google.protobuf.Empty);
+    
     // Delete removes a user record by ID.
     rpc Delete (DeleteRequest) returns (google.protobuf.Empty);
 }
@@ -38,18 +46,27 @@ message GetUserByIdResponse {
     User user = 1;
 }
 
-message GetUserByLoginRequest {
-    string login = 1;
+message GetUserByEmailRequest {
+    string email = 1;
 }
 
-message GetUserByLoginResponse {
+message GetUserByEmailResponse {
     User user = 1;
+}
+
+message CheckCredentialsRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message CheckCredentialsResponse {
+    bool is_valid = 1;
 }
 
 message User {
     string id = 1;
     string name = 2;
-    string login = 3;
+    string email = 3;
     string password = 4;
     string role = 5;
     string phone = 6;
