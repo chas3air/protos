@@ -12,6 +12,8 @@ service Users {
     rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
     // GetUserById retrieves a specific user by their ID.
     rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+    // GetUserByLogin retrieves a specific user by their login.
+    rpc GetUserByLogin (GetUserByLoginRequest) returns (GetUserByLoginResponse);
     // Insert creates a new user record.
     rpc Insert (InsertRequest) returns (google.protobuf.Empty);
     // Update modifies an existing user record.
@@ -36,12 +38,21 @@ message GetUserByIdResponse {
     User user = 1;
 }
 
+message GetUserByLoginRequest {
+    string login = 1;
+}
+
+message GetUserByLoginResponse {
+    User user = 1;
+}
+
 message User {
     string id = 1;
     string name = 2;
     string login = 3;
     string password = 4;
-    string phone = 5;
+    string role = 5;
+    string phone = 6;
 }
 
 message InsertRequest {
