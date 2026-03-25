@@ -1,6 +1,6 @@
 # Определяем переменные
 PROTO_DIR = proto
-PROTO_FILES = proto/users/users.proto
+PROTO_FILES = proto/auth/auth.proto
 OUTPUT_DIR = ./gen/go
 PROTOC = protoc
 PROTOC_GEN_GO = --go_out=$(OUTPUT_DIR) --go_opt=paths=source_relative

@@ -4,10 +4,19 @@ package github.chas3air.protos.auth;
 
 option go_package = "chas3air.auth.v1;authv1";
 
+// Auth service provides operations for user authentication and authorization.
 service Auth {
+    // Login verifies user credentials and returns access and refresh tokens.
     rpc Login (LoginRequest) returns (LoginResponse);
-    rpc Register (RegisterRequest) returns (RegisterResponse);
+
+    // Logout invalidates the user's current access token.
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+
+    // IsAdmin checks if the specified user has administrative privileges.
     rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
+
+    // RefreshToken generates a new access token using a valid refresh token.
+    rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
 }
 
 message LoginRequest {
@@ -16,15 +25,23 @@ message LoginRequest {
 }
 
 message LoginResponse {
-    string accessToken = 1;
-    string refreshToken = 2;
+    string access_token = 1;
 }
 
-message RegisterRequest {
-    User user = 1;
+message LogoutRequest {
+    string access_token = 1;
 }
-message RegisterResponse {
-    User user = 1;
+
+message LogoutResponse {
+    bool logged_out = 1;
+}
+
+message RefreshTokenRequest {
+    string refresh_token = 1;
+}
+
+message RefreshTokenResponse {
+    string access_token = 1;
 }
 
 message IsAdminRequest {
@@ -33,11 +50,4 @@ message IsAdminRequest {
 
 message IsAdminResponse {
     bool is_admin = 1;
-}
-
-message User {
-    string id = 1;
-    string login = 2;
-    string password =3;
-    string role = 4;
 }
